@@ -1,0 +1,24 @@
+{
+  "name": "janu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "@langchain/anthropic": "^1.3.25",
+    "@langchain/core": "^1.1.35",
+    "@langchain/langgraph": "^1.2.5",
+    "@langchain/ollama": "^1.2.6",
+    "@langchain/openai": "^1.3.0",
+    "@langchain/textsplitters": "^1.0.1",
+    "chromadb": "^3.4.0",
+    "langchain": "^1.3.0",
+    "redis": "^5.11.0"
+  }
+}

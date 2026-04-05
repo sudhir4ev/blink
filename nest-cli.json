@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/blink/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/blink/tsconfig.app.json"
+  },
+  "projects": {
+    "blink": {
+      "type": "application",
+      "root": "apps/blink",
+      "entryFile": "main",
+      "sourceRoot": "apps/blink/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/blink/tsconfig.app.json"
+      }
+    },
+    "janu": {
+      "type": "library",
+      "root": "libs/janu",
+      "entryFile": "index",
+      "sourceRoot": "libs/janu/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/janu/tsconfig.lib.json"
+      }
+    }
+  },
+  "monorepo": true,
+  "root": "apps/blink"
+}
