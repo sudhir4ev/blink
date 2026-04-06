@@ -1,0 +1,16 @@
+{
+  "name": "blink",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cli": "nest start --entryFile cli --watch src/cli.ts --"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}

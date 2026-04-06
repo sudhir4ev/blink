@@ -4,14 +4,13 @@
   "sourceRoot": "apps/blink/src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/blink/tsconfig.app.json"
+    "tsConfigPath": "tsconfig.json"
   },
   "projects": {
     "blink": {
       "type": "application",
       "root": "apps/blink",
-      "entryFile": "main",
+      "entryFile": "cli",
       "sourceRoot": "apps/blink/src",
       "compilerOptions": {
         "tsConfigPath": "apps/blink/tsconfig.app.json"
