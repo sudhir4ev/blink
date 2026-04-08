@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { PostgresRelationalAdapter } from './adapters/postgres.relational.adapter';
-import { RedisDocumentAdapter } from './adapters/redis.document.adapter';
 import { DocumentStorage } from './document-storage.service';
 import { RelationalStorage } from './relational-storage.service';
+import { PostgresRelationalAdapter } from './adapters/postgres.relational.adapter';
+import { RedisDocumentAdapter } from './adapters/redis.document.adapter';
 import {
   DOCUMENT_STORAGE_ADAPTER,
   RELATIONAL_STORAGE_ADAPTER,
