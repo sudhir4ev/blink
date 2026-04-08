@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JanuService } from './janu.service';
+import { JanuService } from './search-recipe.service';
 
 @Module({
   providers: [JanuService],

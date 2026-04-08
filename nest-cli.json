@@ -4,7 +4,8 @@
   "sourceRoot": "apps/blink/src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "tsConfigPath": "tsconfig.json"
+    "tsConfigPath": "tsconfig.json",
+    "webpack": true
   },
   "projects": {
     "blink": {
@@ -23,6 +24,15 @@
       "sourceRoot": "libs/janu/src",
       "compilerOptions": {
         "tsConfigPath": "libs/janu/tsconfig.lib.json"
+      }
+    },
+    "storage": {
+      "type": "library",
+      "root": "libs/storage",
+      "entryFile": "index",
+      "sourceRoot": "libs/storage/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/storage/tsconfig.lib.json"
       }
     }
   },
