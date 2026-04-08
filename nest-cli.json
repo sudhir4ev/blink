@@ -4,17 +4,28 @@
   "sourceRoot": "apps/blink/src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "tsConfigPath": "tsconfig.json",
-    "webpack": true
+    "webpack": true,
+    "tsConfigPath": "apps/blink/tsconfig.app.json"
   },
+  "monorepo": true,
+  "root": "apps/blink",
   "projects": {
     "blink": {
       "type": "application",
       "root": "apps/blink",
-      "entryFile": "cli",
+      "entryFile": "main",
       "sourceRoot": "apps/blink/src",
       "compilerOptions": {
         "tsConfigPath": "apps/blink/tsconfig.app.json"
+      }
+    },
+    "cli": {
+      "type": "application",
+      "root": "apps/cli",
+      "entryFile": "main",
+      "sourceRoot": "apps/cli/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/cli/tsconfig.app.json"
       }
     },
     "janu": {
@@ -35,7 +46,5 @@
         "tsConfigPath": "libs/storage/tsconfig.lib.json"
       }
     }
-  },
-  "monorepo": true,
-  "root": "apps/blink"
+  }
 }

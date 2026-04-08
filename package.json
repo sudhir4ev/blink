@@ -12,7 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/blink/main",
-    "cli": "pnpm --filter blink run cli",
+    "cli": "nest start cli --",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "clean": "rm -rf dist && rm -rf node_modules && pnpm run clean:blink && pnpm run clean:janu && pnpm run clean:storage",

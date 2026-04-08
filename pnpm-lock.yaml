@@ -106,6 +106,12 @@ importers:
         specifier: ^14.0.3
         version: 14.0.3
 
+  apps/cli:
+    dependencies:
+      commander:
+        specifier: ^14.0.3
+        version: 14.0.3
+
 packages:
 
   '@angular-devkit/core@19.2.22':

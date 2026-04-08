@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { JanuService } from './search-recipe.service';
+import { SearchRecipeService } from './search-recipe.service';
 
 @Module({
-  providers: [JanuService],
-  exports: [JanuService],
+  providers: [SearchRecipeService],
+  exports: [SearchRecipeService],
 })
 export class JanuModule {}
