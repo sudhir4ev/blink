@@ -1,0 +1,44 @@
+# Local Postgres + Redis for development. Align env vars with
+# libs/storage/src/config/storage-env.schema.ts (e.g. root `.env`).
+#
+# Example: `docker compose up -d` then set POSTGRES_PASSWORD to match
+# POSTGRES_PASSWORD below if you use password auth from the host.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blink
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d blink"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Matches libs/storage storage-env.schema + RedisDocumentAdapter:
+  # REDIS_HOST=localhost, REDIS_PORT=${REDIS_PORT:-6379}, REDIS_DB=0, no REDIS_PASSWORD
+  # (official image: no requirepass; client must not send AUTH).
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  postgres_data:
+  redis_data:

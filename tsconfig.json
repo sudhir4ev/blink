@@ -28,6 +28,12 @@
       "@lib/janu/*": [
         "libs/janu/src/*"
       ],
+      "@lib/storage": [
+        "libs/storage/src"
+      ],
+      "@lib/storage/*": [
+        "libs/storage/src/*"
+      ],
       "@repo/nodebook": [
         "libs/nodebook/src"
       ],

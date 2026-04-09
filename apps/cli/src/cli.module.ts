@@ -1,21 +1,22 @@
 import { Inject, Module, OnApplicationBootstrap } from '@nestjs/common';
 import { Command } from 'commander';
-import { COMMANDER_PROGRAM } from '../contants';
-import { CliServiceService } from './cli-service.service';
+import { COMMANDER_PROGRAM } from './contants';
+import { CliService } from './cli.service';
 import { ConfigModule } from '@nestjs/config';
+import { JanuModule } from '@lib/janu';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), JanuModule],
   providers: [
     {
       provide: COMMANDER_PROGRAM,
       useValue: new Command('blink-cli').usage('<command> [<args>]'),
     },
-    CliServiceService,
+    CliService,
   ],
   controllers: [],
 })
-export class CliAppModule implements OnApplicationBootstrap {
+export class CliModule implements OnApplicationBootstrap {
   constructor(@Inject(COMMANDER_PROGRAM) private readonly program: Command) {}
 
   onApplicationBootstrap() {

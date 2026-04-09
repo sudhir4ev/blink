@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { JanuService } from './janu.service';
+import { SearchRecipeService } from './search-recipe.service';
+import { StorageModule } from '@lib/storage';
 
 @Module({
-  providers: [JanuService],
-  exports: [JanuService],
+  imports: [StorageModule],
+  providers: [SearchRecipeService],
+  exports: [SearchRecipeService],
 })
 export class JanuModule {}

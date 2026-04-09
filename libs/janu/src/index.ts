@@ -1,2 +1,2 @@
 export * from './janu.module';
-export * from './janu.service';
+export * from './search-recipe.service';
