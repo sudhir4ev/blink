@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import Redis from 'ioredis';
-import { getStorageEnv } from '../config/storage-env.schema';
+import { getDocumentStorageEnv } from '../config/storage-env.schema';
 import type { DocumentStorageAdapter } from './types';
 
 @Injectable()
@@ -10,11 +10,12 @@ export class RedisDocumentAdapter
   private readonly redis: Redis;
 
   constructor() {
-    const env = getStorageEnv();
+    const env = getDocumentStorageEnv();
+    const password = env.REDIS_PASSWORD?.trim() || undefined;
     this.redis = new Redis({
       host: env.REDIS_HOST,
       port: env.REDIS_PORT,
-      password: env.REDIS_PASSWORD,
+      password,
       db: env.REDIS_DB,
       maxRetriesPerRequest: 2,
     });
