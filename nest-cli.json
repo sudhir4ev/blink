@@ -27,6 +27,15 @@
         "tsConfigPath": "apps/cli/tsconfig.app.json"
       }
     },
+    "genai": {
+      "type": "library",
+      "root": "libs/genai",
+      "entryFile": "index",
+      "sourceRoot": "libs/genai/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/genai/tsconfig.lib.json"
+      }
+    },
     "janu": {
       "type": "library",
       "root": "libs/janu",
