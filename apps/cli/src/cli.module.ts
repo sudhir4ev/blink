@@ -1,20 +1,27 @@
 import { Inject, Module, OnApplicationBootstrap } from '@nestjs/common';
 import { Command } from 'commander';
-import { COMMANDER_PROGRAM } from './contants';
+import { COMMANDER_PROGRAM, LOGGER } from './contants';
 import { CliService } from './cli.service';
 import { ConfigModule } from '@nestjs/config';
 import { JanuModule } from '@lib/janu';
+import { SearchRecipeController } from './search-recipe/search-recipe.controller';
+import { StorageModule } from '@lib/storage';
+import { GenAIModule } from '@repo/genai';
 
 @Module({
-  imports: [ConfigModule.forRoot(), JanuModule],
+  imports: [ConfigModule.forRoot(), JanuModule, GenAIModule, StorageModule],
   providers: [
+    {
+      provide: LOGGER,
+      useValue: console,
+    },
     {
       provide: COMMANDER_PROGRAM,
       useValue: new Command('blink-cli').usage('<command> [<args>]'),
     },
     CliService,
   ],
-  controllers: [],
+  controllers: [SearchRecipeController],
 })
 export class CliModule implements OnApplicationBootstrap {
   constructor(@Inject(COMMANDER_PROGRAM) private readonly program: Command) {}

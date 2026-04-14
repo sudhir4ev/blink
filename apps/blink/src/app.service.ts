@@ -8,6 +8,6 @@ export class AppService {
   async execGenAIService() {
     const searchRecipeService =
       await this.genaiService.loadSearchRecipeService();
-    return searchRecipeService.search({ query: 'Hello, world!' });
+    return searchRecipeService.query({ query: 'Hello, world!' });
   }
 }

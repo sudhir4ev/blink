@@ -17,9 +17,9 @@ export class GenAIService {
 
   async loadSearchRecipeService() {
     const { SearchRecipeModule } =
-      await import('../search-recipe/search-recipe.module.ts');
+      await import('./search-recipe/search-recipe.module.ts');
     const { SearchRecipeService } =
-      await import('../search-recipe/search-recipe.service.ts');
+      await import('./search-recipe/search-recipe.service.ts');
 
     const moduleRef = await this.lazyModuleLoader.load(
       () => SearchRecipeModule,
