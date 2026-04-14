@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@nestjs/common';
 import { Command } from 'commander';
+import cliProgress, { Presets } from 'cli-progress';
 import { COMMANDER_PROGRAM, LOGGER } from '../contants';
-import { SearchRecipeService } from '@repo/genai/search-recipe/search-recipe.service';
 import { GenAIService } from '@repo/genai';
 
 @Controller('search-recipe')
@@ -15,10 +15,10 @@ export class SearchRecipeController {
     .description('Initialize search recipe')
     .action(() => this.init());
 
-  // private readonly seedCommand = this.mainCommand
-  //   .command('seed')
-  //   .description('Seed search recipe')
-  //   .action(() => this.seed());
+  private readonly seedCommand = this.mainCommand
+    .command('seed')
+    .description('Seed search recipe')
+    .action(() => this.seed());
 
   constructor(
     @Inject(COMMANDER_PROGRAM) private readonly program: Command,
@@ -33,9 +33,17 @@ export class SearchRecipeController {
     await searchRecipeService.init();
   }
 
-  // private async seed() {
-  //   const searchRecipeService =
-  //     await this.genaiService.loadSearchRecipeService();
-  //   await searchRecipeService.seed();
-  // }
+  private async seed() {
+    const searchRecipeService =
+      await this.genaiService.loadSearchRecipeService();
+    const stream = searchRecipeService.seed();
+    const metadata = await stream.next();
+
+    const progressBar = new cliProgress.SingleBar({}, Presets.shades_classic);
+
+    progressBar.start(metadata.value.total, 0);
+    for await (const progress of stream) {
+      progressBar.update(progress.inserted);
+    }
+  }
 }

@@ -1,8 +1,8 @@
 import { Inject, Module, OnApplicationBootstrap } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { Command } from 'commander';
 import { COMMANDER_PROGRAM, LOGGER } from './contants';
 import { CliService } from './cli.service';
-import { ConfigModule } from '@nestjs/config';
 import { JanuModule } from '@lib/janu';
 import { SearchRecipeController } from './search-recipe/search-recipe.controller';
 import { StorageModule } from '@lib/storage';
