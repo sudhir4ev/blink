@@ -20,6 +20,12 @@ export class SearchRecipeController {
     .description('Seed search recipe')
     .action(() => this.seed());
 
+  private readonly queryCommand = this.mainCommand
+    .command('query')
+    .description('Query search recipe')
+    .argument('[question]', 'The question to query the search recipe')
+    .action((question: string) => this.query(question));
+
   constructor(
     @Inject(COMMANDER_PROGRAM) private readonly program: Command,
     @Inject(LOGGER) private readonly logger: LOGGER,
@@ -45,5 +51,12 @@ export class SearchRecipeController {
     for await (const progress of stream) {
       progressBar.update(progress.inserted);
     }
+  }
+
+  private async query(question: string) {
+    const searchRecipeService =
+      await this.genaiService.loadSearchRecipeService();
+    const result = await searchRecipeService.query({ query: question });
+    console.log(result);
   }
 }
