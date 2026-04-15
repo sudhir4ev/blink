@@ -41,7 +41,7 @@ export class SearchRecipeController {
 
     const progressBar = new cliProgress.SingleBar({}, Presets.shades_classic);
 
-    progressBar.start(metadata.value.total, 0);
+    progressBar.start(metadata.value.total ?? 0, 0);
     for await (const progress of stream) {
       progressBar.update(progress.inserted);
     }

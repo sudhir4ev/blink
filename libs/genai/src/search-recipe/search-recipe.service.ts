@@ -72,16 +72,14 @@ export class SearchRecipeService {
     { status: 'completed'; message: string; inserted: number; total: number },
     void
   > {
-    const parser = parse<SearchRecipeCsvRow, SearchRecipeCsvRow>({
+    const parser = parse({
       headers: true,
       trim: true,
       ignoreEmpty: true,
-    }) as NodeJS.ReadWriteStream & AsyncIterable<SearchRecipeCsvRow>;
+    });
 
     const numRows = execSync(`wc -l ${csvPath}`, { encoding: 'utf-8' });
     const total = numRows.split(' ').filter(Boolean)[0];
-    
-    console.log(total);
 
     const inputStream = createReadStream(csvPath).pipe(
       parser,
