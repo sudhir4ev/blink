@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { LazyModuleLoader } from '@nestjs/core';
+import type { SearchRecipeService as SearchRecipeServiceType } from './search-recipe/search-recipe.service';
 
 @Injectable()
 export class GenAIService {
@@ -15,7 +16,7 @@ export class GenAIService {
     };
   }
 
-  async loadSearchRecipeService() {
+  async loadSearchRecipeService(): Promise<SearchRecipeServiceType> {
     const { SearchRecipeModule } =
       await import('./search-recipe/search-recipe.module.ts');
     const { SearchRecipeService } =
