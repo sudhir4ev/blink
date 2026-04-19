@@ -44,12 +44,6 @@ export type MetadataFilter = z.infer<typeof metadataSchema>;
 
 export async function parseQuery(query: string, options: { llm: ChatOllama }) {
   const { llm } = options;
-  console.log(query);
-
-  // return Promise.resolve({
-  //   metadataFilters: [] as MetadataFilter[],
-  //   semanticQuery: query,
-  // });
 
   const prompt = QUERY_PARSE_PROMPT(query);
   const llmResponse = await llm
