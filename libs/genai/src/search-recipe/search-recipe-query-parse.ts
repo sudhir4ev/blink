@@ -68,6 +68,8 @@ export async function parseQuery(query: string, options: { llm: ChatOllama }) {
   }
 
   return {
-    metadata: validatedParsedQuery.data,
+    metadata: {
+      ingredients: validatedParsedQuery.data.ingredients,
+    },
   };
 }

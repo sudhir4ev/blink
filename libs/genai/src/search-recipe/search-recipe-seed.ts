@@ -1,13 +1,7 @@
 import { existsSync, createReadStream } from 'node:fs';
 import { parse } from 'fast-csv';
 import { execSync } from 'node:child_process';
-
-type RelationalStorageLike = {
-  query: (
-    sql: string,
-    values?: unknown[],
-  ) => Promise<{ rowCount?: number } | undefined>;
-};
+import { RelationalStorage } from '@lib/storage';
 
 type LoggerLike = {
   error: (message: string) => void;
@@ -19,7 +13,7 @@ type SeedSearchRecipeOptions = {
 };
 
 export function seedSearchRecipe(
-  relationalStorage: RelationalStorageLike,
+  relationalStorage: RelationalStorage,
   options: SeedSearchRecipeOptions,
   logger?: LoggerLike,
 ): AsyncGenerator<
@@ -40,7 +34,7 @@ export function seedSearchRecipe(
 }
 
 async function* seedGenerator(
-  relationalStorage: RelationalStorageLike,
+  relationalStorage: RelationalStorage,
   csvPath: string,
   seedBatchSize: number,
   logger?: LoggerLike,
@@ -165,7 +159,7 @@ function parseLeadingInt(value?: string): number | null {
 }
 
 async function insertBatch(
-  relationalStorage: RelationalStorageLike,
+  relationalStorage: RelationalStorage,
   batch: SearchRecipeSeedRow[],
 ): Promise<number> {
   const columns = [
